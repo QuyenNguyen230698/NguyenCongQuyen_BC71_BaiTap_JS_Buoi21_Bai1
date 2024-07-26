@@ -58,4 +58,6 @@ function xoaNV(ma) {
     }
 }
 
+function suaNV(ma) {}
+
 function capNhatNV() {}
