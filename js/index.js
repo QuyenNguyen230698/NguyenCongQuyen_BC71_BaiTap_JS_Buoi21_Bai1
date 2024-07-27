@@ -5,7 +5,25 @@ function domID(id) {
 var DSNV = [];
 
 var data = localStorage.getItem("DSNV_JSON");
-DSNV = JSON.parse(data);
+var nvArr = JSON.parse(data);
+
+for(var i = 0; i < nvArr.length; i++) {
+    var data = nvArr[i];
+    var nv = new khungModal(
+        data.tknv,
+        data.name,
+        data.email,
+        data.password,
+        data.datepicker,
+        data.luongCB,
+        data.chucVu,
+        data.gioLam,
+        data.salary,
+        data.typeNV
+    )
+    DSNV.push(nv);
+}
+console.log(data)
 
 renderDSNV();
 
@@ -19,9 +37,9 @@ function renderDSNV() {
         <td>${nv.email}</td>
         <td>${nv.datepicker}</td>
         <td>${nv.chucVu}</td>
-        <td>${nv.luongCB}</td>
-        <td>0</td>
-        <td style="white-space: nowrap;"><button class="btn btn-danger" onclick="xoaNV('${nv.tknv}')" id="btnXoa">Xoá</button><button class="btn btn-warning" id="btnSua" data-toggle="modal"
+        <td>${nv.salary()}</td>
+        <td>${nv.xepLoaiNV()}</td>
+        <td style="white-space: nowrap;"><button class="btn btn-danger" onclick="xoaNV('${nv.tknv}')" id="btnXoa">Xoá</button><button class="btn btn-warning" onclick="suaNV('${nv.tknv}')" id="btnSua" data-toggle="modal"
         data-target="#myModal">Sửa</button></td>
     </tr>`;
     contentHTML += string;
@@ -44,9 +62,9 @@ function themNV() {
   renderDSNV();
 }
 
-function xoaNV(ma) {
+function xoaNV(tknv) {
     var viTri = DSNV.findIndex(function(item) {
-        return item.tknv === ma;
+        return item.tknv === tknv;
     })
     if (viTri !== -1) {
         DSNV.splice(viTri,1);
@@ -58,6 +76,49 @@ function xoaNV(ma) {
     }
 }
 
-function suaNV(ma) {}
+function suaNV(tknv) {
+    var viTri = DSNV.findIndex(function(item) {
+        return item.tknv === tknv;
+    })
+    console.log(tknv)
+    if (viTri !== -1) {
+        var nv = DSNV[viTri];
+        domID("tknv").value = nv.tknv;
+        domID("name").value = nv.name;
+        domID("email").value = nv.email;
+        domID("password").value = nv.password;
+        domID('datepicker').value = nv.datepicker;
+        domID("luongCB").value = nv.luongCB;
+        domID("chucVu").value = nv.chucVu;
+        domID("gioLam").value = nv.gioLam;
 
-function capNhatNV() {}
+        domID('tknv').setAttribute('readonly', 'true');
+    }
+}
+
+function capNhatNV() {
+    var nv = getInfor();
+    var viTri = DSNV.findIndex(function(item){
+        return item.tknv === nv.tknv;
+    })
+    DSNV[viTri] = nv;
+
+    var capNhatJSON = JSON.stringify(DSNV);
+    localStorage.setItem("DSNV_JSON", capNhatJSON);
+
+    renderDSNV();
+}
+
+domID('btnCapNhat').onclick = function() {
+    var nv = getInfor();
+    console.log(nv)
+    var viTri = DSNV.findIndex(function(item){
+        return item.tknv === nv.tknv;
+    })
+    DSNV[viTri] = nv;
+
+    var capNhatJSON = JSON.stringify(DSNV);
+    localStorage.setItem("DSNV_JSON", capNhatJSON);
+
+    renderDSNV();
+}
