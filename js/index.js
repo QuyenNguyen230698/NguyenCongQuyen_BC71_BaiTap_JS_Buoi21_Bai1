@@ -51,6 +51,9 @@ function themNV() {
 
     var nv = getInfor();
 
+    var isValid = checkTKNV(nv.tknv,'tbTKNV') & checkName(nv.name,'tbTen') & checkEmail(nv.email) & checkPassword(nv.password) & checkDate(nv.datepicker) & checkLuongCB(nv.luongCB) & checkChucVu(nv.chucVu) & checkGioLam(nv.gioLam);
+    if (!isValid) return false;
+
   DSNV.push(nv);
   console.log(DSNV);
 
