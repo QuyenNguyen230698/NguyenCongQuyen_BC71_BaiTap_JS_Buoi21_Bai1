@@ -99,22 +99,13 @@ function suaNV(tknv) {
     }
 }
 
-function capNhatNV() {
-    var nv = getInfor();
-    var viTri = DSNV.findIndex(function(item){
-        return item.tknv === nv.tknv;
-    })
-    DSNV[viTri] = nv;
-
-    var capNhatJSON = JSON.stringify(DSNV);
-    localStorage.setItem("DSNV_JSON", capNhatJSON);
-
-    renderDSNV();
-}
-
 domID('btnCapNhat').onclick = function() {
     var nv = getInfor();
-    console.log(nv)
+    console.log(nv);
+    
+    var isValid = checkTKNV(nv.tknv,'tbTKNV') & checkName(nv.name,'tbTen') & checkEmail(nv.email) & checkPassword(nv.password) & checkDate(nv.datepicker) & checkLuongCB(nv.luongCB) & checkChucVu(nv.chucVu) & checkGioLam(nv.gioLam);
+    if (!isValid) return false;
+
     var viTri = DSNV.findIndex(function(item){
         return item.tknv === nv.tknv;
     })
