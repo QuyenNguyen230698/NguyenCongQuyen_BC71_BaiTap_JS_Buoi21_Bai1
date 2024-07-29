@@ -112,7 +112,7 @@ function checkGioLam(value) {
         domID('tbGiolam').innerText = "Trường này không được để trống !";
         domID('tbGiolam').style.display = "block";
         return false;
-    } else if (value < 200 && value > 80) {
+    } else if (value <= 200 && value >= 80) {
         domID('tbGiolam').innerText = '';
         return true;
     } else {
