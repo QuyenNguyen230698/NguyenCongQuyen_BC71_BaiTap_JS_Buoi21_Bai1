@@ -26,7 +26,7 @@ for (var i = 0; i < nvArr.length; i++) {
 console.log(DSNV);
 
 renderDSNV();
-
+//1. In ra table danh sách nhân viên
 function renderDSNV() {
   var contentHTML = "";
   for (var i = 0; i < DSNV.length; i++) {
@@ -50,7 +50,7 @@ function renderDSNV() {
   }
   domID("tableDanhSach").innerHTML = contentHTML;
 }
-
+//2. Thêm nhân viên mới
 function themNV() {
   var nv = getInfor();
 
@@ -75,7 +75,7 @@ function themNV() {
 
   renderDSNV();
 }
-
+//7. Xóa nhân viên
 function xoaNV(tknv) {
   var viTri = DSNV.findIndex(function (item) {
     return item.tknv === tknv;
@@ -109,7 +109,7 @@ function suaNV(tknv) {
     domID("tknv").setAttribute("readonly", "true");
   }
 }
-
+//8. Cập nhật nhân viên (có validation)
 domID("btnCapNhat").onclick = function () {
   var nv = getInfor();
   console.log(nv);
@@ -135,7 +135,7 @@ domID("btnCapNhat").onclick = function () {
 
   renderDSNV();
 };
-
+//9. Tìm Nhân Viên theo loại 
 function displayEmployees(category) {
     var employeeList = document.getElementById('tableDanhSach');
     employeeList.innerHTML = ''; // Xóa nội dung cũ
@@ -181,3 +181,4 @@ function searchEmployees() {
 document.getElementById('btnTimNV').addEventListener('click', function() {
     searchEmployees();
 });
+ 

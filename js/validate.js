@@ -1,4 +1,4 @@
-
+//4. Validation
 
 function checkTKNV(value) {
     const regex = /^[a-zA-Z0-9]{4,6}$/;

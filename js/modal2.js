@@ -1,4 +1,4 @@
-
+//3. Tạo đối tượng nhân viên
 function khungModal(tknv,name,email,password,datepicker,luongCB,chucVu,gioLam) {
     this.tknv = tknv;
     this.name = name;
@@ -8,6 +8,7 @@ function khungModal(tknv,name,email,password,datepicker,luongCB,chucVu,gioLam) {
     this.luongCB = luongCB;
     this.chucVu = chucVu;
     this.gioLam = gioLam;
+    //5. phương thức tính tổng lương nhân viên
     this.salary = function() {
         if (this.chucVu === "Giám đốc") {
             return this.luongCB * 3;
@@ -17,6 +18,7 @@ function khungModal(tknv,name,email,password,datepicker,luongCB,chucVu,gioLam) {
             return this.luongCB * 1;
         }
     };
+    //6. phương thức xếp loại nhân viên
     this.xepLoaiNV = function() {
         if (this.gioLam >= 192) {
             return "Xuất sắc";
